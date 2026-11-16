@@ -18,3 +18,13 @@ jobs:
           python -m pip install -e ".[all,dev]"
       - name: 运行测试
         run: python -m pytest -q
+      - name: 生成示例静帧
+        run: |
+          python examples/flat.py
+          python examples/paint.py
+          python examples/world3.py
+      - name: 编码视频样例
+        run: |
+          python examples/flat.py --video
+          python examples/world3.py --video
+          ffprobe -v error -select_streams v:0 -show_entries stream=width,height,nb_frames -of default=noprint_wrappers=1 out/world3.mp4

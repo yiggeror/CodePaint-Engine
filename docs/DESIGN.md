@@ -74,7 +74,7 @@ RGB 帧（uint8，H×W×3）
 
 `rgb` 为 0 到 1 的浮点颜色，坐标和笔触尺寸采用 1920×1080 的设计空间。该后端当前的目标输出宽高比为 16:9，最终输出尺寸由 `Config` 控制。
 
-三维入口由 `world3.compose` 输出 `x, y, ang, L, W, spr, rgb, a, hb` 等数组，再传入 `Paint`。项目负责组织场景组、动态角色和光照关键帧。
+三维入口由 `world3.compose` 输出 `x, y, ang, L, W, spr, rgb, a, hb` 等数组，再传入 `Paint`。项目负责组织场景组、动态角色和光照关键帧。可以运行 \`python examples/world3.py\`，查看真实三维投影与云影渲染的最小工程。
 
 ## 五、如何接入新风格
 

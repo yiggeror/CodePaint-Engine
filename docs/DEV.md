@@ -26,8 +26,10 @@ GitHub Actions 工作流位于 `.github/workflows/test.yml`，在推送 `main` �
 ```bash
 python examples/flat.py
 python examples/paint.py
+python examples/world3.py
 python examples/flat.py --video
 python examples/paint.py --video
+python examples/world3.py --video
 ```
 
 检查 `out/` 内图像和短视频，确认画面确实发生运动、编码正确且首尾无意外跳变。输出目录已经加入 `.gitignore`。

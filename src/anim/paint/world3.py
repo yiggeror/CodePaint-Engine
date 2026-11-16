@@ -189,7 +189,7 @@ def cat(dicts):
 
 def cloud_shadow(env, x, z):
     """云影强度，随环境风场在地表移动。"""
-    from engine import snoise
+    from .engine import snoise
     t = env.t
     n = snoise((x - 5.5 * t) / 150.0 + 3.0, (z - 2.5 * t) / 150.0, 2)
     return smooth(0.50, 0.68, n)

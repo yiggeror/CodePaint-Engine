@@ -33,3 +33,25 @@ def test_world3():
     path = Path(keys, sigma=0.1)
     e = Env(1.0, path, look)
     assert e.project(np.array([[0.0, 2.0, 12.0]]))[2][0] > 0
+
+def test_world3_shading():
+    """真实经过三维世界、云影和笔触光栅路径。"""
+    from anim.paint import Paint
+    from anim.paint.world3 import Path, Env, SB, shade, compose
+    from anim.paint.light import look
+    rng = np.random.default_rng(3)
+    brush = SB(rng)
+    brush.add(np.array([[0, 2, 8], [0.7, 1.5, 9]], np.float32),
+              D=(1, 0, 0), L=1.0, W=0.3, spr=0,
+              csh=(0.3, 0.2, 0.4), cli=(0.9, 0.6, 0.2))
+    group = brush.group(reflect=False)
+    path = Path([(0, 0, 2, -5, 0, 2, 10, 55), (1, 0, 2, -5, 0, 2, 10, 55)])
+    def lit(t):
+        d = look(t)
+        d["cloudsh"] = 0.5
+        return d
+    env = Env(0.5, path, lit)
+    data = compose([shade(env, group.lod(env))])
+    rgb = Paint().draw(data, Config(128, 72, 10, 1))
+    assert rgb.shape == (72, 128, 3)
+    assert np.any(rgb != rgb[0, 0])

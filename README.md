@@ -16,7 +16,7 @@
 | 三维笔触世界 | 场景组、角色、动态场、细节层级、风与倒影 | `src/anim/paint/world3.py` |
 | 声音工具 | 解码、声像、音效放置、淡化、WAV | `src/anim/audio.py` |
 | 输出 | PNG、H.264 MP4、外部音轨封装 | `src/anim/output.py` |
-| 验证 | 两种后端示例、单元测试、GitHub Actions | `examples/`、`tests/` |
+| 验证 | 平面、二维笔触和三维笔触示例、单元测试、GitHub Actions | `examples/`、`tests/` |
 
 这个仓库是可维护的引擎基础，不存放两部成片的视频。影片场景、镜头表、音效编排仍保存在各自的原作品分支，可作为具体制作方案的参考。
 
@@ -32,11 +32,13 @@ python -m pip install -e ".[all,dev]"
 # 生成两类后端的静帧
 python examples/flat.py
 python examples/paint.py
+python examples/world3.py
 
 # 需要完整测试或小段动画
 python -m pytest -q
 python examples/flat.py --video
 python examples/paint.py --video
+python examples/world3.py --video
 ```
 
 默认输出到 `out/`。纯二维功能可以只安装 `.[flat]`，笔触功能使用 `.[paint]`；完整开发环境使用 `.[all,dev]`。
