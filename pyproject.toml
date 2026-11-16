@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codepaint-anim"
+version = "0.1.0"
+description = "可扩展动画引擎：时间轴、相机、场景、可插拔渲染与输出"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+flat = ["Pillow>=10"]
+paint = ["scipy>=1.11", "numba>=0.59", "opencv-python-headless>=4.8"]
+all = ["Pillow>=10", "scipy>=1.11", "numba>=0.59", "opencv-python-headless>=4.8"]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
