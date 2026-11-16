@@ -8,8 +8,8 @@ jobs:
   unit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
       - name: 安装依赖
@@ -23,6 +23,8 @@ jobs:
           python examples/flat.py
           python examples/paint.py
           python examples/world3.py
+      - name: 安装 FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
       - name: 编码视频样例
         run: |
           python examples/flat.py --video
